@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://backbonejs.org/examples/todos/index.html -->
+<html lang="en"><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>Modal Test</title>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <style type="text/css">
+    body {
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#" id="show-wizard" class="btn">Show Modal</a>
+
+  <script data-main="js/main" src="js/lib/require.js"></script>
+
+  <script id="wizard-template" type="text/template">
+    <div class="modal" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3><%= title %></h3>
+      </div>
+      <div id="wizard-card-body" class="modal-body">
+        <p><%= body %> <%= this.testVar %></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn close-button" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary next-button">Next</button>
+      </div>
+    </div>
+    <div class="modal-backdrop"></div>
+  </script>
+
+  <script id="card-template" type="text/template">
+    <div>
+      <%= body %>
+    </div>
+  </script>
+
+</body>
+</html>
