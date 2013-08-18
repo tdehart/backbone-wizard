@@ -8,7 +8,7 @@ define([
 
         events: {
             'click .close': 'close',
-            'click .close-button': 'close',
+            'click .cancel-button': 'close',
             'click .next-button': 'nextStep',
             'click .prev-button': 'prevStep'
         },
