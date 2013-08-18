@@ -1,10 +1,10 @@
 require.config({
-    enforceDefine: true,
     paths: {
         'jquery': 'lib/jquery',
         'underscore': 'lib/underscore',
         'backbone': 'lib/backbone',
-        'bootstrap': 'lib/bootstrap'
+        'bootstrap': 'lib/bootstrap',
+        'json2': 'lib/json2'
     },
     shim: {
         "underscore": {
@@ -18,11 +18,6 @@ require.config({
     }
 });
 
-define(["jquery", "underscore", "backbone"],
-    function ($, _, Backbone) {
-        console.log("Test output");
-        console.log("$: " + typeof $);
-        console.log("_: " + typeof _);
-        console.log("Backbone: " + typeof Backbone);
-    }
-);
+require(['app'], function(App){
+  App.initialize();
+});

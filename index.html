@@ -3,41 +3,49 @@
 <html lang="en"><head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <title>Modal Test</title>
+  <title>Wizard Test</title>
   <link href="css/bootstrap.css" rel="stylesheet">
   <style type="text/css">
     body {
       padding: 20px;
     }
+
   </style>
 </head>
 
 <body>
-  <a href="#" id="show-wizard" class="btn">Show Modal</a>
+  <a href="#" id="show-wizard" class="btn">Show Wizard</a>
 
   <script data-main="js/main" src="js/lib/require.js"></script>
 
   <script id="wizard-template" type="text/template">
     <div class="modal" aria-hidden="true">
+
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3><%= title %></h3>
+        <h3 id="wizard-card-header"></h3>
       </div>
-      <div id="wizard-card-body" class="modal-body">
-        <p><%= body %> <%= this.testVar %></p>
+
+      <div class="modal-body">
+        <div class="progress progress-striped active">
+          <div class="bar" style="width: 0%;"></div>
+        </div>
+        <p id="wizard-card-body"></p>
+        <p class="current-card-container"></p>
       </div>
+      
       <div class="modal-footer">
-        <button class="btn close-button" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn close-button pull-left btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <button class="btn btn-primary prev-button">Previous</button>
         <button class="btn btn-primary next-button">Next</button>
       </div>
     </div>
+
     <div class="modal-backdrop"></div>
   </script>
 
   <script id="card-template" type="text/template">
-    <div>
-      <%= body %>
-    </div>
+    <div id="card-body"> <%= body %></div>
   </script>
 
 </body>
