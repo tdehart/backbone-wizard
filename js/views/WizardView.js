@@ -40,7 +40,8 @@ define([
             this.wizardCardBody.html(currentStep.instructions);
             this.wizardCardHeader.html(currentStep.title);
             this.currentView = currentStep.view;
-            this.currentCardContainer.html(this.currentView.render().el);
+
+            this.currentView.render();
 
             this.updateProgressBar();
 
