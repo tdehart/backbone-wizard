@@ -34,13 +34,13 @@ define([
           ];
 
     $('#show-wizard').click(function() {
-      var view = new WizardView({ 
+      var view = new WizardView({
         model: wizardModel,
         steps: steps
       });
       view.show();
     });
-  }
+  };
 
   return {
     initialize: initialize

@@ -21,44 +21,45 @@ define([
 
         render: function() {
             this.$el.html(this.template(this.model.toJSON()));
-            this.currentCardContainer = this.$(".current-card-container");
-            this.wizardCardHeader = this.$("#wizard-card-header");
-            this.wizardCardBody = this.$("#wizard-card-body");
-            this.nextStepButton = this.$(".next-button");
-            this.prevStepButton = this.$(".prev-button");
-            this.progressBar = this.$(".bar");
+            this.$currentCardContainer = this.$(".current-card-container");
+            this.$wizardCardHeader = this.$("#wizard-card-header");
+            this.$wizardCardBody = this.$("#wizard-card-body");
+            this.$nextStepButton = this.$(".next-button");
+            this.$prevStepButton = this.$(".prev-button");
+            this.$progressBar = this.$(".bar");
 
             this.renderCurrentStep();
             return this;
         },
 
         renderCurrentStep: function() {
-            var currentStep = this.options.steps[this.currentStep];
-            if (!this.isFirstStep()) var prevStep = this.options.steps[this.currentStep - 1];
-            var nextStep = this.options.steps[this.currentStep + 1];
+            var currentStep, prevStep, nextStep;
+            currentStep = this.options.steps[this.currentStep];
+            if (!this.isFirstStep()) prevStep = this.options.steps[this.currentStep - 1];
+            nextStep = this.options.steps[this.currentStep + 1];
 
-            this.wizardCardBody.html(currentStep.instructions);
-            this.wizardCardHeader.html(currentStep.title);
+            this.$wizardCardBody.html(currentStep.instructions);
+            this.$wizardCardHeader.html(currentStep.title);
             this.currentView = currentStep.view;
 
-            this.currentView.render();
+            this.$currentCardContainer.html(this.currentView.render().el);
 
             this.updateProgressBar();
 
             if (prevStep) {
-                this.prevStepButton.html("Prev").show()
+                this.$prevStepButton.html("Prev").show();
             } else {
-                this.prevStepButton.hide();
-            };
+                this.$prevStepButton.hide();
+            }
             if (nextStep) {
-                this.nextStepButton.html("Next");
+                this.$nextStepButton.html("Next");
             } else {
-                this.nextStepButton.html("Finish");
-            };
+                this.$nextStepButton.html("Finish");
+            }
         },
 
         updateProgressBar: function() {
-            this.progressBar.css("width", ((this.currentStep+1)/this.totalSteps * 100) + '%');
+            this.$progressBar.css("width", ((this.currentStep+1)/this.totalSteps * 100) + '%');
         },
 
         nextStep: function() {
@@ -69,18 +70,18 @@ define([
             } else {
                 //Do save here
                 this.close();
-            };
+            }
         },
 
         prevStep: function() {
             if (!this.isFirstStep()) {
                 this.currentStep -= 1;
                 this.renderCurrentStep();
-            };
+            }
         },
 
         isFirstStep: function() {
-            return (this.currentStep == 0);
+            return (this.currentStep === 0);
         },
 
         isLastStep: function() {
